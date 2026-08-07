@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Router-opsætning — Kollegienet.dk</title>
+<meta name="description" content="Guide til opsætning af router til internet fra Kollegienet i Odense.">
+<link rel="icon" href="favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="da_DK">
+<meta property="og:title" content="Router-opsætning — Kollegienet.dk">
+<meta property="og:description" content="Guide til opsætning af router til internet fra Kollegienet i Odense.">
+<meta property="og:url" content="https://kollegienet.dk/router-opsaetning.html">
+<meta property="og:image" content="https://kollegienet.dk/wp-content/uploads/2020/03/kollegienet-FBcover-4.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="wordmark"><span class="wordmark-top"><span class="dot"></span>Kollegienet</span><small>Foreningen Kollegienet Odense</small></a>
+    <input type="checkbox" id="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">Menu</label>
+    <nav class="main-nav">
+      <a href="index.html">Forside</a>
+      <a href="driftstatus.html">Driftstatus</a>
+      <a href="bliv-bruger.html">Bliv bruger</a>
+      <a href="dokumenter.html">Dokumenter</a>
+      <a href="router-opsaetning.html" aria-current="page">Router-opsætning</a>
+      <a href="om.html">Om foreningen</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="crumb"><a href="index.html">Forside</a> / <a href="dokumenter.html">Dokumenter</a> / Router-opsætning</div>
+      <h1>Opsætning af router</h1>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+
+        <div class="doc-group" style="margin-bottom:32px;">
+          <ul class="doc-list">
+            <li><a href="dokumenter/opsaetning-af-internet-kollegienet.pdf">Opsætning af internet — Kollegienet <span class="ext">PDF</span></a></li>
+            <li><a href="dokumenter/setting-up-the-internet-kollegienet.pdf">Setting up the internet — Kollegienet (English) <span class="ext">PDF</span></a></li>
+          </ul>
+        </div>
+
+        <p><strong>Følgende er under antagelse af, at routeren benytter fabriksindstillinger.</strong></p>
+
+        <h2>Routere</h2>
+
+        <h3>Apple (AirPort)</h3>
+        <ol>
+          <li>Åbn AirPort-værktøj</li>
+          <li>Find fanebladet “Netværk”</li>
+          <li>Skift “Router funktion” fra “Fra (bro funktion)” til “DHCP og NAT”</li>
+          <li>Klik “Opdater”</li>
+        </ol>
+        <p>Routeren vil herefter klage over dobbelt NAT — dette kan blot ignoreres.</p>
+
+        <h4>Hvorfor er dette nødvendigt?</h4>
+        <p>Apple opsætter som udgangspunkt deres routere til autokonfiguration baseret på den IP-adresse, den modtager fra netværket. Når den modtager en IP-adresse i det private <a href="https://tools.ietf.org/html/rfc1918">RFC 1918</a>-område, sætter den sig selv op i “Off (Bridge Mode)”.</p>
+
+        <h3>NETGEAR N300 (WNR2000)</h3>
+        <p>Vi fraråder på det kraftigste at anskaffe denne router — vi oplever gentagne problemer med den, og da det samtidig er en af de billigste på markedet, er det desværre også den, flest studerende ender med at købe.</p>
+
+        <h3>Mercusys AC1200</h3>
+        <div class="notice" style="margin:12px 0 0;">
+          <span class="dot-bad"></span>
+          <p style="margin:0;">Må ikke anvendes på <strong>HCØ</strong> og <strong>Rasmus Rask Kollegiet</strong>.</p>
+        </div>
+
+        <p>Har du brug for hjælp til opsætning eller konfigurering, er du velkommen til at <a href="kontakt.html">kontakte os</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="info-panels">
+      <div class="info-panel">
+        <span class="eyebrow">Åbningstider</span>
+        <table class="hours">
+          <tr><td>Mandag</td><td>16–20</td></tr>
+          <tr class="closed"><td>Tirsdag</td><td>Lukket</td></tr>
+          <tr><td>Onsdag</td><td>16–20</td></tr>
+          <tr class="closed"><td>Torsdag</td><td>Lukket</td></tr>
+          <tr><td>Fredag</td><td>14–18</td></tr>
+        </table>
+      </div>
+      <div class="info-panel">
+        <span class="eyebrow">Kontakt</span>
+        <span class="contact-line"><span class="label">Telefon</span>63 14 44 57</span>
+        <span class="contact-line"><span class="label">Support</span><a href="mailto:info@kollegienet.dk">info@kollegienet.dk</a></span>
+        <span class="contact-line"><span class="label">Adresse</span>Cortex Park 18A, 5230 Odense M</span>
+      </div>
+      <div class="info-panel">
+        <span class="eyebrow">Bliv frivillig</span>
+        <p style="margin-bottom:10px; font-size:.9rem;">FKO leder altid efter frivillige til sociale arrangementer og arbejde med netværksudstyr.</p>
+        <a href="om.html#frivillig">Læs mere →</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Foreningen Kollegienet Odense</span>
+      <span><a href="https://www.facebook.com/kollegienet">facebook.com/kollegienet</a></span>
+    </div>
+  </div>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

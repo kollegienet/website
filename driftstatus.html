@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Driftstatus — Kollegienet.dk</title>
+<meta name="description" content="Se den samlede driftstatus for Kollegienet — internet til kollegier og ungdomsboliger i Odense.">
+<link rel="icon" href="favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="da_DK">
+<meta property="og:title" content="Driftstatus — Kollegienet.dk">
+<meta property="og:description" content="Se den samlede driftstatus for Kollegienet — internet til kollegier og ungdomsboliger i Odense.">
+<meta property="og:url" content="https://kollegienet.dk/driftstatus.html">
+<meta property="og:image" content="https://kollegienet.dk/wp-content/uploads/2020/03/kollegienet-FBcover-4.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="wordmark"><span class="wordmark-top"><span class="dot"></span>Kollegienet</span><small>Foreningen Kollegienet Odense</small></a>
+    <input type="checkbox" id="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">Menu</label>
+    <nav class="main-nav">
+      <a href="index.html">Forside</a>
+      <a href="driftstatus.html" aria-current="page">Driftstatus</a>
+      <a href="bliv-bruger.html">Bliv bruger</a>
+      <a href="dokumenter.html">Dokumenter</a>
+      <a href="router-opsaetning.html">Router-opsætning</a>
+      <a href="om.html">Om foreningen</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="crumb"><a href="index.html">Forside</a> / Driftstatus</div>
+      <h1>Driftstatus</h1>
+      <p class="lede">Her kan du se den samlede driftstatus for Kollegienet.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <!--
+        SÅDAN OPDATERER DU DRIFTSTATUS
+        -------------------------------
+        Den store status herunder er ÉN samlet indikator for hele
+        Kollegienet — ikke en liste over enkelte kollegier.
+
+          Alt OK:
+            <span class="status-dot-lg ok"></span>
+            <div class="status-label">Alt kører normalt</div>
+
+          Driftsproblemer:
+            <span class="status-dot-lg bad"></span>
+            <div class="status-label">Der er driftsproblemer</div>
+
+        Vedrører problemet kun ét eller få kollegier, kan I tilføje
+        en besked-boks herunder for at beskrive det:
+
+          <div class="notice">
+            <span class="dot-bad"></span>
+            <p style="margin:0;">Jeres tekst her.</p>
+          </div>
+      -->
+      <div class="board" style="max-width:none;">
+        <div class="board-head"><span>Driftstatus</span><span>Kollegienet</span></div>
+        <div class="status-overall">
+          <span class="status-dot-lg ok"></span>
+          <div>
+            <div class="status-label">Alt kører normalt</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="info-panels">
+      <div class="info-panel">
+        <span class="eyebrow">Åbningstider</span>
+        <table class="hours">
+          <tr><td>Mandag</td><td>16–20</td></tr>
+          <tr class="closed"><td>Tirsdag</td><td>Lukket</td></tr>
+          <tr><td>Onsdag</td><td>16–20</td></tr>
+          <tr class="closed"><td>Torsdag</td><td>Lukket</td></tr>
+          <tr><td>Fredag</td><td>14–18</td></tr>
+        </table>
+      </div>
+      <div class="info-panel">
+        <span class="eyebrow">Kontakt</span>
+        <span class="contact-line"><span class="label">Telefon</span>63 14 44 57</span>
+        <span class="contact-line"><span class="label">Support</span><a href="mailto:info@kollegienet.dk">info@kollegienet.dk</a></span>
+        <span class="contact-line"><span class="label">Adresse</span>Cortex Park 18A, 5230 Odense M</span>
+      </div>
+      <div class="info-panel">
+        <span class="eyebrow">Bliv frivillig</span>
+        <p style="margin-bottom:10px; font-size:.9rem;">FKO leder altid efter frivillige til sociale arrangementer og arbejde med netværksudstyr.</p>
+        <a href="om.html#frivillig">Læs mere →</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Foreningen Kollegienet Odense</span>
+      <span><a href="https://www.facebook.com/kollegienet">facebook.com/kollegienet</a></span>
+    </div>
+  </div>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
