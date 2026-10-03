@@ -15,7 +15,7 @@
 <link rel="alternate" hreflang="da" href="https://kollegienet.dk/router-opsaetning.html">
 <link rel="alternate" hreflang="en" href="https://kollegienet.dk/en/router-opsaetning.html">
 <link rel="alternate" hreflang="x-default" href="https://kollegienet.dk/router-opsaetning.html">
-<link rel="stylesheet" href="../style.css?v=20261003c">
+<link rel="stylesheet" href="../style.css?v=20261003d">
 </head>
 <body>
 
@@ -49,32 +49,46 @@
   <section>
     <div class="wrap">
       <div class="prose">
-        <div class="doc-group" style="margin-bottom:32px;">
-          <ul class="doc-list">
-            <li><a href="../dokumenter/setting-up-the-internet-kollegienet.pdf">Setting up the internet — Kollegienet <span class="ext">PDF</span></a></li>
-            <li><a href="../dokumenter/opsaetning-af-internet-kollegienet.pdf" hreflang="da">Opsætning af internet — Kollegienet (Danish) <span class="ext">PDF</span></a></li>
-          </ul>
-        </div>
-        <p><strong>The following assumes the router uses its factory settings.</strong></p>
-        <h2>Routers</h2>
-        <h3>Apple (AirPort)</h3>
-        <ol>
-          <li>Open AirPort Utility</li>
-          <li>Find the “Network” tab</li>
-          <li>Change “Router Mode” from “Off (Bridge Mode)” to “DHCP and NAT”</li>
-          <li>Click “Update”</li>
+        <h2>What you need</h2>
+        <ul>
+          <li><strong>Your own router.</strong> We don't recommend routers or modems from other internet providers, such as YouSee, TDC or Stofa, as they may not work.</li>
+          <li><strong>A LAN cable</strong> — usually included with the router.</li>
+          <li><strong>A power cable</strong> for the router.</li>
+        </ul>
+
+        <h2>How to set it up</h2>
+        <ol class="guide-steps">
+          <li>
+            <p><strong>Find the network socket in the wall of your home.</strong></p>
+            <figure class="guide-photo guide-photo-wall-socket"><img src="../images/router-guide-wall-socket.jpg" alt="Network socket in the wall with two ports" width="720" height="480" loading="lazy"></figure>
+            <p class="guide-note"><strong>Note:</strong> Some homes have two sockets, and only one of them works. If in doubt, ask your neighbour which socket works for them.</p>
+          </li>
+          <li>
+            <p><strong>Plug the LAN cable into the wall socket and into the router's input port.</strong></p>
+            <figure class="guide-photo guide-photo-input-port"><img src="../images/router-guide-input-port.jpg" alt="Back of a router, with a red arrow pointing at the blue input port" width="824" height="292" loading="lazy"></figure>
+            <p>The input port is the one that has a different colour from the others. See the router's manual if needed.</p>
+          </li>
+          <li>
+            <p><strong>Connect to the router's wireless network.</strong></p>
+            <p>The network name (SSID) and password are usually on a label underneath the router.</p>
+          </li>
+          <li>
+            <p><strong>Do the router's first-time setup, as described in its manual.</strong></p>
+            <p>If you're asked to choose a connection type, choose <strong>dynamic IP</strong>. For a TP-Link router, you can follow <a href="https://www.youtube.com/watch?v=RRlL8cESL9M&amp;t=51s">this video</a>.</p>
+          </li>
+          <li>
+            <p><strong>The internet should now work.</strong></p>
+          </li>
         </ol>
-        <p>The router will then complain about double NAT — this can be ignored.</p>
-        <h4>Why is this necessary?</h4>
-        <p>Apple routers configure themselves based on the IP address they receive from the network. When they receive an IP address in the private <a href="https://tools.ietf.org/html/rfc1918">RFC 1918</a> range, they set themselves to “Off (Bridge Mode)”.</p>
-        <h3>NETGEAR N300 (WNR2000)</h3>
-        <p>We strongly advise against buying this router — we see repeated problems with it, and as it's one of the cheapest on the market, it's unfortunately also the one most students end up buying.</p>
+
         <h3>Mercusys AC1200</h3>
         <div class="notice" style="margin:12px 0 0;">
           <span class="dot-bad"></span>
           <p style="margin:0;">Must not be used at <strong>HCØ</strong> and <strong>Rasmus Rask Kollegiet</strong>.</p>
         </div>
-        <p>If you need help with setup or configuration, you're welcome to <a href="kontakt.html">contact us</a>.</p>
+
+        <p style="margin-top:28px;">Not working? Check the <a href="driftstatus.html">network status</a>, or <a href="kontakt.html">contact us</a> on 63 14 44 57.</p>
+        <p class="guide-pdf">The guide is also available as a <a href="../dokumenter/setting-up-the-internet-kollegienet.pdf">printable PDF</a>.</p>
       </div>
     </div>
   </section>

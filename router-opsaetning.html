@@ -15,7 +15,7 @@
 <link rel="alternate" hreflang="da" href="https://kollegienet.dk/router-opsaetning.html">
 <link rel="alternate" hreflang="en" href="https://kollegienet.dk/en/router-opsaetning.html">
 <link rel="alternate" hreflang="x-default" href="https://kollegienet.dk/router-opsaetning.html">
-<link rel="stylesheet" href="style.css?v=20261003c">
+<link rel="stylesheet" href="style.css?v=20261003d">
 </head>
 <body>
 
@@ -48,32 +48,37 @@
   <section>
     <div class="wrap">
       <div class="prose">
+        <h2>Det skal du bruge</h2>
+        <ul>
+          <li><strong>Din egen router.</strong> Vi anbefaler ikke routere eller modemer fra andre internetudbydere, f.eks. YouSee, TDC eller Stofa, da de måske ikke virker.</li>
+          <li><strong>Et LAN-kabel</strong> — følger typisk med routeren.</li>
+          <li><strong>Strømkabel</strong> til routeren.</li>
+        </ul>
 
-        <div class="doc-group" style="margin-bottom:32px;">
-          <ul class="doc-list">
-            <li><a href="dokumenter/opsaetning-af-internet-kollegienet.pdf">Opsætning af internet — Kollegienet <span class="ext">PDF</span></a></li>
-            <li><a href="dokumenter/setting-up-the-internet-kollegienet.pdf">Setting up the internet — Kollegienet (English) <span class="ext">PDF</span></a></li>
-          </ul>
-        </div>
-
-        <p><strong>Følgende er under antagelse af, at routeren benytter fabriksindstillinger.</strong></p>
-
-        <h2>Routere</h2>
-
-        <h3>Apple (AirPort)</h3>
-        <ol>
-          <li>Åbn AirPort-værktøj</li>
-          <li>Find fanebladet “Netværk”</li>
-          <li>Skift “Router funktion” fra “Fra (bro funktion)” til “DHCP og NAT”</li>
-          <li>Klik “Opdater”</li>
+        <h2>Sådan gør du</h2>
+        <ol class="guide-steps">
+          <li>
+            <p><strong>Find netværksstikket i væggen i din bolig.</strong></p>
+            <figure class="guide-photo guide-photo-wall-socket"><img src="images/router-guide-wall-socket.jpg" alt="Netværksstik i væggen med to porte" width="720" height="480" loading="lazy"></figure>
+            <p class="guide-note"><strong>OBS:</strong> I nogle boliger er der to stik, hvor kun det ene virker. Spørg evt. naboen, hvilket stik der virker hos dem.</p>
+          </li>
+          <li>
+            <p><strong>Sæt LAN-kablet i stikket i væggen og i routerens indgangsport.</strong></p>
+            <figure class="guide-photo guide-photo-input-port"><img src="images/router-guide-input-port.jpg" alt="Bagsiden af en router, hvor en rød pil peger på den blå indgangsport" width="824" height="292" loading="lazy"></figure>
+            <p>Indgangsporten er den port, der har en anden farve end de andre. Se evt. routerens manual.</p>
+          </li>
+          <li>
+            <p><strong>Forbind til routerens trådløse netværk.</strong></p>
+            <p>Netværkets navn (SSID) og adgangskoden står typisk på et mærkat under routeren.</p>
+          </li>
+          <li>
+            <p><strong>Lav routerens første opsætning, som beskrevet i manualen.</strong></p>
+            <p>Bliver du bedt om at vælge forbindelsestype, så vælg <strong>dynamisk IP</strong>. Har du en TP-Link-router, kan du følge <a href="https://www.youtube.com/watch?v=RRlL8cESL9M&amp;t=51s">denne video</a>.</p>
+          </li>
+          <li>
+            <p><strong>Nu skulle internettet gerne virke.</strong></p>
+          </li>
         </ol>
-        <p>Routeren vil herefter klage over dobbelt NAT — dette kan blot ignoreres.</p>
-
-        <h4>Hvorfor er dette nødvendigt?</h4>
-        <p>Apple opsætter som udgangspunkt deres routere til autokonfiguration baseret på den IP-adresse, den modtager fra netværket. Når den modtager en IP-adresse i det private <a href="https://tools.ietf.org/html/rfc1918">RFC 1918</a>-område, sætter den sig selv op i “Off (Bridge Mode)”.</p>
-
-        <h3>NETGEAR N300 (WNR2000)</h3>
-        <p>Vi fraråder på det kraftigste at anskaffe denne router — vi oplever gentagne problemer med den, og da det samtidig er en af de billigste på markedet, er det desværre også den, flest studerende ender med at købe.</p>
 
         <h3>Mercusys AC1200</h3>
         <div class="notice" style="margin:12px 0 0;">
@@ -81,7 +86,8 @@
           <p style="margin:0;">Må ikke anvendes på <strong>HCØ</strong> og <strong>Rasmus Rask Kollegiet</strong>.</p>
         </div>
 
-        <p>Har du brug for hjælp til opsætning eller konfigurering, er du velkommen til at <a href="kontakt.html">kontakte os</a>.</p>
+        <p style="margin-top:28px;">Virker det ikke? Tjek <a href="driftstatus.html">driftstatus</a>, eller <a href="kontakt.html">kontakt os</a> på 63 14 44 57.</p>
+        <p class="guide-pdf">Guiden findes også som <a href="dokumenter/opsaetning-af-internet-kollegienet.pdf">PDF til udskrift</a>.</p>
       </div>
     </div>
   </section>
