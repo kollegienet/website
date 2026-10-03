@@ -18,13 +18,27 @@
   var BASE = root.getAttribute('data-stats');
   var STALE_MS = 45 * 60 * 1000;
   var SVG = 'http://www.w3.org/2000/svg';
-  var PERIODS = [
-    { key: 'day', label: 'Døgn' },
-    { key: 'week', label: 'Uge' },
-    { key: 'month', label: 'Måned' },
-    { key: 'year', label: 'År' },
-    { key: 'years', label: '4 år' }
-  ];
+  // Texts and number/date formats follow the page language (<html lang="da"> or "en").
+  var EN = (document.documentElement.lang || '').slice(0, 2) === 'en';
+  var LOCALE = EN ? 'en-GB' : LOCALE;
+  var T = EN ? {
+    periods: ['Day', 'Week', 'Month', 'Year', '4 years'],
+    uplinks: 'Internet uplinks', dorms: 'Dorms', noData: 'No data',
+    head: ['', 'Now', 'Average', 'Max', '95th percentile', 'Data'],
+    back: '← All connections', loading: 'Loading…', portError: 'Could not load data for ',
+    error: "Traffic statistics can't be loaded right now. Please try again later.",
+    at: 'at ', updated: 'Updated ', stale: 'Not updated since '
+  } : {
+    periods: ['Døgn', 'Uge', 'Måned', 'År', '4 år'],
+    uplinks: 'Internetforbindelse', dorms: 'Kollegier', noData: 'Ingen data',
+    head: ['', 'Nu', 'Gennemsnit', 'Maks', '95-percentil', 'Data'],
+    back: '← Alle forbindelser', loading: 'Henter…', portError: 'Kunne ikke hente data for ',
+    error: 'Trafikstatistikken kan ikke hentes lige nu. Prøv igen senere.',
+    at: 'kl. ', updated: 'Opdateret ', stale: 'Ikke opdateret siden '
+  };
+  var PERIODS = ['day', 'week', 'month', 'year', 'years'].map(function (key, i) {
+    return { key: key, label: T.periods[i] };
+  });
 
   var overview = root.querySelector('[data-stats-overview]');
   var detail = root.querySelector('[data-stats-detail]');
@@ -59,7 +73,7 @@
     for (var i = 0; i < units.length; i++) {
       if (Math.abs(v) >= units[i][0]) {
         var n = v / units[i][0];
-        return n.toLocaleString('da-DK', { maximumFractionDigits: n < 10 ? 1 : 0 }) + ' ' + units[i][1];
+        return n.toLocaleString(LOCALE, { maximumFractionDigits: n < 10 ? 1 : 0 }) + ' ' + units[i][1];
       }
     }
     return Math.round(v) + ' bit/s';
@@ -68,7 +82,7 @@
   function fmtBytes(b) {
     var units = [[1e12, 'TB'], [1e9, 'GB'], [1e6, 'MB']];
     for (var i = 0; i < units.length; i++) {
-      if (b >= units[i][0]) return (b / units[i][0]).toLocaleString('da-DK', { maximumFractionDigits: 1 }) + ' ' + units[i][1];
+      if (b >= units[i][0]) return (b / units[i][0]).toLocaleString(LOCALE, { maximumFractionDigits: 1 }) + ' ' + units[i][1];
     }
     return Math.round(b / 1e3) + ' kB';
   }
@@ -110,10 +124,10 @@
   }
 
   function timeLabel(date, period) {
-    if (period === 'day') return date.toLocaleTimeString('da-DK', { hour: '2-digit', minute: '2-digit' });
-    if (period === 'week') return date.toLocaleDateString('da-DK', { weekday: 'short' });
-    if (period === 'month') return date.toLocaleDateString('da-DK', { day: 'numeric', month: 'short' });
-    if (period === 'year') return date.toLocaleDateString('da-DK', { month: 'short' });
+    if (period === 'day') return date.toLocaleTimeString(LOCALE, { hour: '2-digit', minute: '2-digit' });
+    if (period === 'week') return date.toLocaleDateString(LOCALE, { weekday: 'short' });
+    if (period === 'month') return date.toLocaleDateString(LOCALE, { day: 'numeric', month: 'short' });
+    if (period === 'year') return date.toLocaleDateString(LOCALE, { month: 'short' });
     return String(date.getFullYear());
   }
 
@@ -177,16 +191,16 @@
   function showUpdated(generatedAt) {
     var t = new Date(generatedAt);
     if (isNaN(t)) { updatedEl.textContent = ''; return; }
-    var when = 'kl. ' + t.toLocaleTimeString('da-DK', { hour: '2-digit', minute: '2-digit' });
-    if (t.toDateString() !== new Date().toDateString()) when = t.toLocaleDateString('da-DK', { day: 'numeric', month: 'long' }) + ' ' + when;
+    var when = T.at + t.toLocaleTimeString(LOCALE, { hour: '2-digit', minute: '2-digit' });
+    if (t.toDateString() !== new Date().toDateString()) when = t.toLocaleDateString(LOCALE, { day: 'numeric', month: 'long' }) + ' ' + when;
     var stale = Date.now() - t > STALE_MS;
-    updatedEl.textContent = (stale ? 'Ikke opdateret siden ' : 'Opdateret ') + when;
+    updatedEl.textContent = (stale ? T.stale : T.updated) + when;
     updatedEl.classList.toggle('stale', stale);
   }
 
   function renderOverview() {
     overview.textContent = '';
-    [['uplink', 'Internetforbindelse'], ['dorm', 'Kollegier']].forEach(function (g) {
+    [['uplink', T.uplinks], ['dorm', T.dorms]].forEach(function (g) {
       var ports = index.ports.filter(function (p) { return p.group === g[0]; });
       if (!ports.length) return;
       overview.appendChild(el('h2', 'stats-group', g[1]));
@@ -207,7 +221,7 @@
           now.appendChild(el('span', 'up', '↑ ' + fmtBps(stats(dir.up, series.step).now)));
           a.appendChild(now);
         } else {
-          a.appendChild(el('div', 'stats-now', 'Ingen data'));
+          a.appendChild(el('div', 'stats-now', T.noData));
         }
         grid.appendChild(a);
       });
@@ -218,7 +232,7 @@
   function legendTable(dir, step) {
     var table = el('table', 'stats-legend');
     var head = el('tr');
-    ['', 'Nu', 'Gennemsnit', 'Maks', '95-percentil', 'Data'].forEach(function (h) { head.appendChild(el('th', null, h)); });
+    T.head.forEach(function (h) { head.appendChild(el('th', null, h)); });
     table.appendChild(head);
     [['down', '↓ Download'], ['up', '↑ Upload']].forEach(function (r) {
       var s = stats(dir[r[0]], step);
@@ -232,7 +246,7 @@
 
   function renderDetail(port, data, periodKey) {
     detail.textContent = '';
-    var back = el('a', 'stats-back', '← Alle forbindelser');
+    var back = el('a', 'stats-back', T.back);
     back.href = '#';
     detail.appendChild(back);
     var title = el('h2', null, port.name);
@@ -253,7 +267,15 @@
     detail.appendChild(legendTable(dir, series.step));
   }
 
+  // Keep the selected port/period when switching language.
+  function syncLangSwitch() {
+    Array.prototype.forEach.call(document.querySelectorAll('.lang-switch a'), function (a) {
+      a.setAttribute('href', a.getAttribute('href').split('#')[0] + location.hash);
+    });
+  }
+
   function route() {
+    syncLangSwitch();
     var m = location.hash.match(/^#(\d+)(?:\/(\w+))?$/);
     if (!m || !index) {
       detail.hidden = true;
@@ -267,9 +289,9 @@
     detail.hidden = false;
     var show = function (data) { renderDetail(port, data, periodKey); };
     if (portCache[port.id]) return show(portCache[port.id]);
-    detail.textContent = 'Henter…';
+    detail.textContent = T.loading;
     getJSON('port-' + port.id + '.json').then(function (data) { portCache[port.id] = data; show(data); })
-      .catch(function () { detail.textContent = 'Kunne ikke hente data for ' + port.name + '.'; });
+      .catch(function () { detail.textContent = T.portError + port.name + '.'; });
   }
 
   Promise.all([getJSON('index.json'), getJSON('day.json')]).then(function (r) {
@@ -279,7 +301,7 @@
     renderOverview();
     route();
   }).catch(function () {
-    overview.textContent = 'Trafikstatistikken kan ikke hentes lige nu. Prøv igen senere.';
+    overview.textContent = T.error;
     updatedEl.textContent = '';
   });
   window.addEventListener('hashchange', route);
