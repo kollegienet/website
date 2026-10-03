@@ -279,6 +279,7 @@ nav.main-nav a[aria-current="page"] {
 .dot-ok { background: var(--green); }
 .dot-bad { background: var(--red); }
 .board-list li.problem { color: var(--red); }
+.board-list.stale { opacity: .55; }
 .board-foot {
   border-top: 1px solid var(--line);
   padding: 12px 18px;
@@ -303,6 +304,7 @@ nav.main-nav a[aria-current="page"] {
 }
 .status-dot-lg.ok { background: var(--green); box-shadow: 0 0 0 5px rgba(46,125,70,.12); }
 .status-dot-lg.bad { background: var(--red); box-shadow: 0 0 0 5px rgba(181,67,44,.12); }
+.status-dot-lg.unknown { background: var(--muted); box-shadow: 0 0 0 5px rgba(107,101,120,.12); }
 .status-label {
   font-family: var(--font-display);
   font-weight: 600;
