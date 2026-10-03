@@ -38,43 +38,39 @@
     <div class="wrap">
       <div class="crumb"><a href="index.html">Forside</a> / Driftstatus</div>
       <h1>Driftstatus</h1>
-      <p class="lede">Her kan du se den samlede driftstatus for Kollegienet.</p>
+      <p class="lede">Her kan du se driftstatus for de kollegier og ungdomsboliger, Kollegienet leverer internet til. Status opdateres automatisk.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap">
       <!--
-        SÅDAN OPDATERER DU DRIFTSTATUS
-        -------------------------------
-        Den store status herunder er ÉN samlet indikator for hele
-        Kollegienet — ikke en liste over enkelte kollegier.
+        Driftstatus hentes automatisk fra LibreNMS via
+        https://stats.kollegienet.dk/driftstatus.json (opdateres hvert 2. minut).
 
-          Alt OK:
-            <span class="status-dot-lg ok"></span>
-            <div class="status-label">Alt kører normalt</div>
-
-          Driftsproblemer:
-            <span class="status-dot-lg bad"></span>
-            <div class="status-label">Der er driftsproblemer</div>
-
-        Vedrører problemet kun ét eller få kollegier, kan I tilføje
-        en besked-boks herunder for at beskrive det:
+        Vil I skrive en besked om et kendt problem, så tilføj en
+        besked-boks over status-tavlen:
 
           <div class="notice">
             <span class="dot-bad"></span>
             <p style="margin:0;">Jeres tekst her.</p>
           </div>
       -->
-      <div class="board" style="max-width:none;">
+      <div class="board" style="max-width:none;" id="driftstatus" data-src="https://stats.kollegienet.dk/driftstatus.json">
         <div class="board-head"><span>Driftstatus</span><span>Kollegienet</span></div>
         <div class="status-overall">
-          <span class="status-dot-lg ok"></span>
+          <span class="status-dot-lg unknown" data-status-dot></span>
           <div>
-            <div class="status-label">Alt kører normalt</div>
+            <div class="status-label" data-status-label>Henter status…</div>
+            <div class="status-sub" data-status-sub></div>
           </div>
         </div>
+        <ul class="board-list full" data-status-list hidden></ul>
+        <div class="board-foot">
+          Se trafikgrafer for hvert kollegie på <a href="https://stats.kollegienet.dk/">stats.kollegienet.dk</a>.
+        </div>
       </div>
+      <noscript><p>Driftstatus kræver JavaScript. Se <a href="https://stats.kollegienet.dk/">stats.kollegienet.dk</a> eller vores <a href="https://www.facebook.com/kollegienet">Facebook</a>.</p></noscript>
     </div>
   </section>
 </main>
@@ -111,5 +107,61 @@
   </div>
 </footer>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+(function () {
+  var board = document.getElementById('driftstatus');
+  var dot = board.querySelector('[data-status-dot]');
+  var label = board.querySelector('[data-status-label]');
+  var sub = board.querySelector('[data-status-sub]');
+  var list = board.querySelector('[data-status-list]');
+  var STALE_MS = 10 * 60 * 1000;
+
+  function show(state, text, detail) {
+    dot.className = 'status-dot-lg ' + state;
+    label.textContent = text;
+    sub.textContent = detail || '';
+  }
+
+  function unknown() {
+    show('unknown', 'Status ukendt lige nu', 'Vi kan ikke hente driftstatus. Følg med på Facebook ved driftsproblemer.');
+    list.hidden = true;
+  }
+
+  function render(data) {
+    var updated = new Date(data.generated_at);
+    if (isNaN(updated) || Date.now() - updated > STALE_MS || !Array.isArray(data.dorms)) return unknown();
+
+    var time = 'Opdateret kl. ' + updated.toLocaleTimeString('da-DK', { hour: '2-digit', minute: '2-digit' });
+    var down = data.dorms.filter(function (d) { return d.status === 'down'; });
+    if (down.length) {
+      show('bad', down.length === 1 ? 'Driftsproblemer på 1 kollegie' : 'Driftsproblemer på ' + down.length + ' kollegier', time);
+    } else {
+      show('ok', 'Alt kører normalt', time);
+    }
+
+    list.textContent = '';
+    down.concat(data.dorms.filter(function (d) { return d.status !== 'down'; })).forEach(function (d) {
+      var li = document.createElement('li');
+      var dotEl = document.createElement('span');
+      dotEl.className = d.status === 'down' ? 'dot-bad' : 'dot-ok';
+      li.appendChild(dotEl);
+      li.appendChild(document.createTextNode(d.name));
+      if (d.status === 'down') li.className = 'problem';
+      list.appendChild(li);
+    });
+    list.hidden = false;
+  }
+
+  function load() {
+    fetch(board.dataset.src, { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(render)
+      .catch(unknown);
+  }
+
+  load();
+  setInterval(load, 2 * 60 * 1000);
+})();
+</script>
 </body>
 </html>
