@@ -129,11 +129,19 @@
 
   function render(data) {
     var updated = new Date(data.generated_at);
-    if (isNaN(updated) || Date.now() - updated > STALE_MS || !Array.isArray(data.dorms)) return unknown();
+    if (isNaN(updated) || !Array.isArray(data.dorms)) return unknown();
 
-    var time = 'Opdateret kl. ' + updated.toLocaleTimeString('da-DK', { hour: '2-digit', minute: '2-digit' });
+    var when = 'kl. ' + updated.toLocaleTimeString('da-DK', { hour: '2-digit', minute: '2-digit' });
+    if (updated.toDateString() !== new Date().toDateString()) {
+      when = updated.toLocaleDateString('da-DK', { day: 'numeric', month: 'long' }) + ' ' + when;
+    }
+    var time = 'Opdateret ' + when;
+    var stale = Date.now() - updated > STALE_MS;
     var down = data.dorms.filter(function (d) { return d.status === 'down'; });
-    if (down.length) {
+    if (stale) {
+      // Keep the last known status visible, but don't present it as current.
+      show('unknown', 'Status ikke opdateret siden ' + when, 'Viser senest kendte status. Følg med på Facebook ved driftsproblemer.');
+    } else if (down.length) {
       show('bad', down.length === 1 ? 'Driftsproblemer på 1 kollegie' : 'Driftsproblemer på ' + down.length + ' kollegier', time);
     } else {
       show('ok', 'Alt kører normalt', time);
@@ -149,6 +157,7 @@
       if (d.status === 'down') li.className = 'problem';
       list.appendChild(li);
     });
+    list.classList.toggle('stale', stale);
     list.hidden = false;
   }
 

@@ -279,6 +279,7 @@ nav.main-nav a[aria-current="page"] {
 .dot-ok { background: var(--green); }
 .dot-bad { background: var(--red); }
 .board-list li.problem { color: var(--red); }
+.board-list.stale { opacity: .55; }
 .board-foot {
   border-top: 1px solid var(--line);
   padding: 12px 18px;
