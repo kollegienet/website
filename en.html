@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In English — Kollegienet.dk</title>
+<meta name="description" content="Foreningen Kollegienet Odense provides internet to dorms and youth housing in Odense. Contact, router setup and user rules in English.">
+<link rel="icon" href="favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="In English — Kollegienet.dk">
+<meta property="og:description" content="Foreningen Kollegienet Odense provides internet to dorms and youth housing in Odense. Contact, router setup and user rules in English.">
+<meta property="og:url" content="https://kollegienet.dk/en.html">
+<meta property="og:image" content="https://kollegienet.dk/images/og-cover.png">
+<link rel="alternate" hreflang="da" href="https://kollegienet.dk/">
+<link rel="alternate" hreflang="en" href="https://kollegienet.dk/en.html">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="wordmark"><span class="wordmark-top"><span class="dot"></span>Kollegienet</span><small>Foreningen Kollegienet Odense</small></a>
+    <input type="checkbox" id="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">Menu</label>
+    <nav class="main-nav">
+      <a href="index.html">Forside</a>
+      <a href="driftstatus.html">Driftstatus</a>
+      <a href="bliv-bruger.html">Bliv bruger</a>
+      <a href="dokumenter.html">Dokumenter</a>
+      <a href="router-opsaetning.html">Router-opsætning</a>
+      <a href="om.html">Om foreningen</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="crumb"><a href="index.html" hreflang="da" lang="da">Forside</a> / In English</div>
+      <h1>Kollegienet in English</h1>
+      <p class="lede">Foreningen Kollegienet Odense (FKO) is a non-profit association that provides internet to dorms and youth housing in Odense, run by volunteers. The rest of the website is in Danish.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+
+        <h2 id="status">Network status</h2>
+        <p>See the current status of every dorm on our <a href="driftstatus.html" hreflang="da">status page</a> (green: everything OK, red: problems). Facebook is our FAQ and your lifeline: follow <a href="https://www.facebook.com/kollegienet">Foreningen Kollegienet Odense</a> to stay informed about maintenance work and news.</p>
+
+        <h2 id="router-setup">Router setup</h2>
+        <p>Step-by-step guide: <a href="dokumenter/setting-up-the-internet-kollegienet.pdf">Setting up the internet — Kollegienet</a> (PDF). The following assumes the router uses its factory settings.</p>
+        <h3>Apple (AirPort)</h3>
+        <ol>
+          <li>Open AirPort Utility.</li>
+          <li>Find the &ldquo;Network&rdquo; tab.</li>
+          <li>Change &ldquo;Router Mode&rdquo; from &ldquo;Off (Bridge Mode)&rdquo; to &ldquo;DHCP and NAT&rdquo;.</li>
+          <li>Click &ldquo;Update&rdquo;.</li>
+        </ol>
+        <p>The router will then complain about double NAT — this can be ignored.</p>
+        <p><strong>Why is this necessary?</strong> Apple routers configure themselves based on the IP address they receive from the network. When they receive an address in the private <a href="https://datatracker.ietf.org/doc/html/rfc1918">RFC 1918</a> range, they set themselves to &ldquo;Off (Bridge Mode)&rdquo;, which doesn't work well with our network.</p>
+        <h3>NETGEAR N300 (WNR2000)</h3>
+        <p>We strongly advise against buying this router. We see repeated problems with it, and as it is one of the cheapest on the market, it is unfortunately also the one most students end up buying.</p>
+        <h3>Mercusys AC1200</h3>
+        <p>Must not be used at HCØ and Rasmus Rask Kollegiet.</p>
+
+        <h2 id="user-rules">User rules</h2>
+        <p>Using the network means accepting our <a href="user-rules.html">user rules</a>.</p>
+
+        <h2 id="contact">Contact</h2>
+        <p>Foreningen Kollegienet Odense<br>Cortex Park 18A<br>5230 Odense M<br>Phone: <a href="tel:+4563144457">63 14 44 57</a></p>
+        <p><strong>Support and administration.</strong> Questions about administration go to the day-to-day manager at <a href="mailto:leder@kollegienet.dk">leder@kollegienet.dk</a>. Technical questions go to <a href="mailto:info@kollegienet.dk">info@kollegienet.dk</a>. You are also welcome at our office during office hours (see below), by phone or in person.</p>
+        <p><strong>Chairman.</strong> Anders Siebert Johannessen Jørgensen, <a href="mailto:formand@kollegienet.dk">formand@kollegienet.dk</a>. All enquiries should go through the day-to-day manager unless this is unacceptable.</p>
+        <p><strong>Board.</strong> <a href="mailto:bestyrelse@kollegienet.dk">bestyrelse@kollegienet.dk</a></p>
+        <p><strong>Webmaster.</strong> <a href="mailto:webmaster@kollegienet.dk">webmaster@kollegienet.dk</a></p>
+        <p><strong>Abuse.</strong> If you receive spam or experience hacking from Kollegienet's network, email <a href="mailto:abuse@kollegienet.dk">abuse@kollegienet.dk</a> immediately.</p>
+
+        <h2 id="volunteer">Volunteer with us</h2>
+        <p>As a volunteer you get what you give: many previous volunteers got good jobs after their studies thanks to their work here. Kollegienet is a fantastic playground where we work to give students better and cheaper internet — and we also have social events. Interested? Contact the day-to-day manager at <a href="mailto:leder@kollegienet.dk">leder@kollegienet.dk</a>.</p>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="info-panels">
+      <div class="info-panel">
+        <span class="eyebrow">Åbningstider</span>
+        <table class="hours">
+          <tr><td>Mandag</td><td>16–20</td></tr>
+          <tr class="closed"><td>Tirsdag</td><td>Lukket</td></tr>
+          <tr><td>Onsdag</td><td>16–20</td></tr>
+          <tr class="closed"><td>Torsdag</td><td>Lukket</td></tr>
+          <tr><td>Fredag</td><td>14–18</td></tr>
+        </table>
+      </div>
+      <div class="info-panel">
+        <span class="eyebrow">Kontakt</span>
+        <span class="contact-line"><span class="label">Telefon</span>63 14 44 57</span>
+        <span class="contact-line"><span class="label">Support</span><a href="mailto:info@kollegienet.dk">info@kollegienet.dk</a></span>
+        <span class="contact-line"><span class="label">Adresse</span>Cortex Park 18A, 5230 Odense M</span>
+      </div>
+      <div class="info-panel">
+        <span class="eyebrow">Bliv frivillig</span>
+        <p style="margin-bottom:10px; font-size:.9rem;">FKO leder altid efter frivillige til sociale arrangementer og arbejde med netværksudstyr.</p>
+        <a href="om.html#frivillig">Læs mere →</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Foreningen Kollegienet Odense</span>
+      <span><a href="index.html" hreflang="da" lang="da">På dansk</a> · <a href="https://www.facebook.com/kollegienet">facebook.com/kollegienet</a></span>
+    </div>
+  </div>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
