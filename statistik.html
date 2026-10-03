@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Driftstatus — Kollegienet.dk</title>
-<meta name="description" content="Se den samlede driftstatus for Kollegienet — internet til kollegier og ungdomsboliger i Odense.">
+<title>Trafikstatistik — Kollegienet.dk</title>
+<meta name="description" content="Trafik på Kollegienets forbindelser til kollegierne og internettet.">
 <link rel="icon" href="favicon.ico">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="da_DK">
-<meta property="og:title" content="Driftstatus — Kollegienet.dk">
-<meta property="og:description" content="Se den samlede driftstatus for Kollegienet — internet til kollegier og ungdomsboliger i Odense.">
-<meta property="og:url" content="https://kollegienet.dk/driftstatus.html">
+<meta property="og:title" content="Trafikstatistik — Kollegienet.dk">
+<meta property="og:description" content="Trafik på Kollegienets forbindelser til kollegierne og internettet.">
+<meta property="og:url" content="https://kollegienet.dk/statistik.html">
 <meta property="og:image" content="https://kollegienet.dk/images/og-cover.png">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -23,7 +23,7 @@
     <label for="nav-toggle" class="nav-toggle-label">Menu</label>
     <nav class="main-nav">
       <a href="index.html">Forside</a>
-      <a href="driftstatus.html" aria-current="page">Driftstatus</a>
+      <a href="driftstatus.html">Driftstatus</a>
       <a href="bliv-bruger.html">Bliv bruger</a>
       <a href="dokumenter.html">Dokumenter</a>
       <a href="router-opsaetning.html">Router-opsætning</a>
@@ -36,41 +36,19 @@
 <main>
   <section class="page-hero">
     <div class="wrap">
-      <div class="crumb"><a href="index.html">Forside</a> / Driftstatus</div>
-      <h1>Driftstatus</h1>
-      <p class="lede">Her kan du se driftstatus for de kollegier og ungdomsboliger, Kollegienet leverer internet til. Status opdateres automatisk.</p>
+      <div class="crumb"><a href="index.html">Forside</a> / <a href="driftstatus.html">Driftstatus</a> / Trafikstatistik</div>
+      <h1>Trafikstatistik</h1>
+      <p class="lede">Trafik på forbindelserne til hvert kollegie og til internettet. <span class="stats-key"><span class="down">↓ Download</span> til kollegiet, <span class="up">↑ Upload</span> fra kollegiet.</span> <span class="stats-updated" data-stats-updated></span></p>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <!--
-        Driftstatus hentes automatisk fra LibreNMS via
-        https://kollegienet.github.io/driftstatus/driftstatus.json
-
-        Vil I skrive en besked om et kendt problem, så tilføj en
-        besked-boks over status-tavlen:
-
-          <div class="notice">
-            <span class="dot-bad"></span>
-            <p style="margin:0;">Jeres tekst her.</p>
-          </div>
-      -->
-      <div class="board" style="max-width:none;" data-driftstatus="https://kollegienet.github.io/driftstatus/driftstatus.json">
-        <div class="board-head"><span>Driftstatus</span><span>Kollegienet</span></div>
-        <div class="status-overall">
-          <span class="status-dot-lg unknown" data-status-dot></span>
-          <div>
-            <div class="status-label" data-status-label>Henter status…</div>
-            <div class="status-sub" data-status-sub></div>
-          </div>
-        </div>
-        <ul class="board-list full" data-status-list hidden></ul>
-        <div class="board-foot">
-          Se <a href="statistik.html">trafikstatistik</a> for hvert kollegie.
-        </div>
+      <div data-stats="https://kollegienet.github.io/driftstatus/stats/">
+        <div data-stats-overview>Henter statistik…</div>
+        <div data-stats-detail hidden></div>
       </div>
-      <noscript><p>Driftstatus kræver JavaScript. Se vores <a href="https://www.facebook.com/kollegienet">Facebook</a>.</p></noscript>
+      <noscript><p>Trafikstatistikken kræver JavaScript.</p></noscript>
     </div>
   </section>
 </main>
@@ -107,6 +85,6 @@
   </div>
 </footer>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script src="driftstatus.js"></script>
+<script src="statistik.js"></script>
 </body>
 </html>
