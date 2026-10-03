@@ -539,3 +539,54 @@ table.hours tr.closed td:last-child { color: var(--line); }
 .callout p { color: var(--on-brand-muted); margin-bottom: 0; max-width: 52ch; }
 .callout .btn-solid { background: var(--on-brand); color: var(--brand); border-color: var(--on-brand); }
 .callout .btn-solid:hover { background: var(--green); color: var(--on-brand); border-color: var(--green); }
+
+/* ---------- Trafikstatistik ---------- */
+
+:root {
+  --chart-down: #7A3FB8;   /* download — brand purple */
+  --chart-up: #2B8A8A;     /* upload — teal, distinct from status green/red */
+}
+.stats-key .down, .stats-now .down, .stats-legend th.down { color: var(--chart-down); }
+.stats-key .up, .stats-now .up, .stats-legend th.up { color: var(--chart-up); }
+.stats-updated { display: block; font-family: var(--font-mono); font-size: .78rem; margin-top: 6px; }
+.stats-updated.stale { color: var(--red); }
+.stats-group { font-size: 1.1rem; margin: 28px 0 12px; }
+.stats-group:first-child { margin-top: 0; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+.stats-card {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 12px 14px 10px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.stats-card:hover { border-color: var(--wire); }
+.stats-card-head { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.stats-name { font-weight: 600; }
+.stats-speed { font-family: var(--font-mono); font-size: .72rem; color: var(--muted); white-space: nowrap; }
+.stats-now { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: .78rem; margin-top: 4px; }
+.traffic-chart { display: block; height: auto; }
+.traffic-chart .area.down { fill: var(--chart-down); fill-opacity: .75; }
+.traffic-chart .area.up { fill: var(--chart-up); fill-opacity: .75; }
+.traffic-chart .axis { stroke: var(--ink); stroke-width: 1; }
+.traffic-chart .grid { stroke: var(--line); stroke-width: 1; }
+.traffic-chart .tick { font-family: var(--font-mono); font-size: 11px; fill: var(--muted); }
+.stats-back { display: inline-block; font-family: var(--font-mono); font-size: .82rem; margin-bottom: 12px; }
+.stats-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 16px; }
+.stats-tabs a {
+  font-family: var(--font-mono); font-size: .8rem;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 5px 12px; color: var(--ink); text-decoration: none;
+}
+.stats-tabs a.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.stats-legend { border-collapse: collapse; margin-top: 16px; font-family: var(--font-mono); font-size: .8rem; width: 100%; }
+.stats-legend th, .stats-legend td { text-align: right; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.stats-legend th:first-child { text-align: left; }
+.stats-legend tr:first-child th { color: var(--muted); font-weight: 500; }
+[data-stats-detail] { overflow-x: auto; }
