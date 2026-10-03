@@ -111,9 +111,12 @@ p { margin: 0 0 1em; }
 }
 
 .site-header .wrap {
+  /* A little wider than the page text so the Danish menu has room to spare. */
+  max-width: calc(var(--max) + 120px);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 24px;
   height: 72px;
 }
 
@@ -142,6 +145,7 @@ p { margin: 0 0 1em; }
   display: inline-block;
 }
 .wordmark small {
+  white-space: nowrap;
   font-family: var(--font-mono);
   font-weight: 400;
   font-size: .62rem;
@@ -151,11 +155,12 @@ p { margin: 0 0 1em; }
 
 nav.main-nav {
   display: flex;
-  gap: 28px;
+  gap: 18px;
   font-family: var(--font-mono);
-  font-size: .82rem;
+  font-size: .78rem;
 }
 nav.main-nav a {
+  white-space: nowrap;
   color: var(--on-brand);
   text-decoration: none;
   padding: 4px 0;
@@ -178,6 +183,7 @@ nav.main-nav { margin-left: auto; }
   font-weight: 500;
 }
 .lang-switch a, .lang-switch span {
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -191,9 +197,8 @@ nav.main-nav { margin-left: auto; }
 .lang-switch img { display: block; width: 18px; height: 12px; border-radius: 1px; box-shadow: 0 0 0 1px rgba(0,0,0,.25); }
 .lang-switch a:hover { border-color: var(--on-brand-accent); color: var(--on-brand-accent); }
 .lang-switch [aria-current] { background: var(--on-brand); border-color: var(--on-brand); color: var(--brand); }
-@media (max-width: 1100px) {
-  nav.main-nav { gap: 18px; }
-}
+/* Measured: the Danish menu fits on one line with room to spare above 1150px window width;
+   at 1150px and below it collapses into the Menu button (see below). */
 
 ::selection {
   background: var(--wire-soft);
@@ -212,7 +217,7 @@ nav.main-nav { margin-left: auto; }
   border-radius: var(--radius);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1150px) {
   nav.main-nav {
     display: none;
     position: absolute;
@@ -674,3 +679,14 @@ table.hours tr.closed td:last-child { color: var(--line); }
   .help-panel { grid-template-columns: 1fr; gap: 28px; padding: 24px; }
   .grid-2 { grid-template-columns: 1fr; }
 }
+
+/* ---------- Router guide (router-opsaetning.html) ---------- */
+
+.guide-steps > li { margin-bottom: 1.4em; }
+.guide-steps > li > p:first-child { margin-bottom: .3em; }
+.guide-photo { margin: 12px 0; }
+.guide-photo img { display: block; max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+.guide-photo-wall-socket img { max-width: 300px; }
+.guide-photo-input-port img { max-width: 460px; }
+.guide-note { background: var(--wire-soft); border-left: 3px solid var(--wire); padding: 10px 14px; border-radius: var(--radius); }
+.guide-pdf { color: var(--muted); font-size: .9rem; }
