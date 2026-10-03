@@ -1,5 +1,5 @@
 /*
-  Driftstatus: renders https://stats.kollegienet.dk/driftstatus.json into every
+  Driftstatus: renders https://kollegienet.github.io/driftstatus/driftstatus.json into every
   element with a data-driftstatus attribute (the URL). Used by driftstatus.html
   (full list) and index.html (compact card without a list).
 
@@ -10,7 +10,8 @@
     [data-status-list]   optional <ul> listing every dorm
 */
 (function () {
-  var STALE_MS = 10 * 60 * 1000;
+  // GitHub Pages caches the JSON for up to 10 minutes, so allow for that on top of the update interval.
+  var STALE_MS = 30 * 60 * 1000;
 
   function setup(board) {
     var dot = board.querySelector('[data-status-dot]');
