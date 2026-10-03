@@ -38,6 +38,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px; /* clear the sticky .site-header (72px) on anchor jumps */
 }
 
 body {
