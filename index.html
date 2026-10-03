@@ -46,12 +46,13 @@
         </div>
       </div>
 
-      <div class="board">
+      <div class="board" data-driftstatus="https://stats.kollegienet.dk/driftstatus.json">
         <div class="board-head"><span>Driftstatus</span></div>
         <div class="status-overall compact">
-          <span class="status-dot-lg ok"></span>
+          <span class="status-dot-lg unknown" data-status-dot></span>
           <div>
-            <div class="status-label">Alt kører normalt</div>
+            <div class="status-label" data-status-label>Henter status…</div>
+            <div class="status-sub" data-status-sub></div>
           </div>
         </div>
         <div class="board-foot">
@@ -128,6 +129,7 @@
     </div>
   </div>
 </footer>
+<script src="driftstatus.js"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
