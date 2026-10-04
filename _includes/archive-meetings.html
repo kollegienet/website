@@ -1,0 +1,43 @@
+{%- comment -%}
+  Lists the general meeting documents: one section per folder (newest first),
+  files in name order. The leading number ("01 ") sets the order and is not shown.
+  Usage: {% include archive-meetings.html lang="da" %}           full list
+         {% include archive-meetings.html lang="da" grid=true %} year links only
+  See dokumenter/README.md.
+{%- endcomment -%}
+{%- assign base = "/dokumenter/repraesentantskabsmode/" -%}
+{%- assign t = site.data.archive[include.lang] -%}
+{%- assign files = site.static_files | where_exp: "f", "f.path contains base" | sort: "path" -%}
+{%- assign dirs = "" -%}
+{%- for f in files -%}
+  {%- assign dir = f.path | remove_first: base | split: "/" | first -%}
+  {%- assign dirs = dirs | append: dir | append: "|" -%}
+{%- endfor -%}
+{%- assign dirs = dirs | split: "|" | uniq | sort | reverse -%}
+{%- if include.grid %}
+        <div class="year-grid">
+{%- for dir in dirs -%}
+  {%- assign year = dir | slice: 0, 4 %}
+          <a href="repraesentantskabsmode.html#{{ dir }}">{{ year }}{% if dir contains "ekstraordinaer" %} ({{ t.extraordinary_short }}){% endif %}</a>
+{%- endfor %}
+        </div>
+{%- else -%}
+{%- for dir in dirs -%}
+  {%- assign year = dir | slice: 0, 4 -%}
+  {%- assign prefix = base | append: dir | append: "/" %}
+      <div class="doc-group" id="{{ dir }}">
+        <h3>{% if dir contains "ekstraordinaer" %}{{ t.extraordinary }} {{ year }}{% else %}{{ dir }}{% endif %}</h3>
+        <ul class="doc-list">
+  {%- for f in files -%}
+    {%- if f.path contains prefix -%}
+      {%- assign label = f.basename -%}
+      {%- assign first = label | split: " " | first -%}
+      {%- assign digits = first | remove: "0" | remove: "1" | remove: "2" | remove: "3" | remove: "4" | remove: "5" | remove: "6" | remove: "7" | remove: "8" | remove: "9" -%}
+      {%- if first.size == 2 and digits == "" -%}{%- assign label = label | remove_first: first | strip -%}{%- endif %}
+          <li><a href="{{ f.path | uri_escape }}">{{ label }} <span class="ext">{{ f.extname | remove: "." | upcase }}</span></a></li>
+    {%- endif -%}
+  {%- endfor %}
+        </ul>
+      </div>
+{%- endfor -%}
+{%- endif %}
