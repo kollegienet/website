@@ -1,0 +1,32 @@
+{%- comment -%}
+  Lists the files in a folder named by date, grouped by year, newest first.
+  Usage: {% include archive-dated.html folder="/dokumenter/bestyrelsesmoeder/" lang="da" %}
+  File names: YYYY-MM-DD.pdf, optionally followed by a space and a description,
+  e.g. "2023-04-24 Konstituerende.pdf". See dokumenter/README.md.
+{%- endcomment -%}
+{%- assign base = include.folder -%}
+{%- assign t = site.data.archive[include.lang] -%}
+{%- assign files = site.static_files | where_exp: "f", "f.path contains base" | sort: "name" | reverse -%}
+{%- assign year = "" -%}
+{%- for f in files -%}
+  {%- assign d = f.name | slice: 0, 10 -%}
+  {%- assign y = d | slice: 0, 4 -%}
+  {%- if y != year -%}
+    {%- unless year == "" %}
+        </ul>
+      </div>
+{% endunless %}
+      <div class="doc-group">
+        <h3>{{ y }}</h3>
+        <ul class="doc-list">
+    {%- assign year = y -%}
+  {%- endif -%}
+  {%- assign m = d | slice: 5, 2 | plus: 0 | minus: 1 -%}
+  {%- assign day = d | slice: 8, 2 | plus: 0 -%}
+  {%- assign rest = f.basename | remove_first: d | strip %}
+          <li><a href="{{ f.path | uri_escape }}">{% if include.lang == "en" %}{{ day }} {{ t.months[m] }} {{ y }}{% else %}{{ day }}. {{ t.months[m] }} {{ y }}{% endif %}{% if rest != "" %} — {{ rest }}{% endif %} <span class="ext">{{ f.extname | remove: "." | upcase }}</span></a></li>
+{%- endfor -%}
+{%- unless year == "" %}
+        </ul>
+      </div>
+{%- endunless %}

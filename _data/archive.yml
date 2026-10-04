@@ -1,0 +1,9 @@
+# Texts for the document archive lists (_includes/archive-*.html).
+da:
+  months: [januar, februar, marts, april, maj, juni, juli, august, september, oktober, november, december]
+  extraordinary: Ekstraordinær
+  extraordinary_short: ekstraord.
+en:
+  months: [January, February, March, April, May, June, July, August, September, October, November, December]
+  extraordinary: Extraordinary
+  extraordinary_short: extraord.
